@@ -326,12 +326,12 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
             // prof_registration
             if ($pathinfo === '/register/prof') {
-                return array (  '_controller' => 'AcmeUserBundle:RegistrationProf:register',  '_route' => 'prof_registration',);
+                return array (  '_controller' => 'Gestion\\UserBundle\\Controller\\RegistrationProfController::registerAction',  '_route' => 'prof_registration',);
             }
 
             // admin_registration
             if ($pathinfo === '/register/admin') {
-                return array (  '_controller' => 'AcmeUserBundle:RegistrationAdmin:register',  '_route' => 'admin_registration',);
+                return array (  '_controller' => 'Gestion\\UserBundle\\Controller\\RegistrationAdminController::registerAction',  '_route' => 'admin_registration',);
             }
 
         }
