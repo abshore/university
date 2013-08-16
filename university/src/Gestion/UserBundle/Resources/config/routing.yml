@@ -22,9 +22,9 @@ etudiant_registration:
 
 prof_registration:
     pattern:  /register/prof
-    defaults: { _controller: AcmeUserBundle:RegistrationProf:register }
+    defaults: { _controller: GestionUserBundle:RegistrationProf:register }
 admin_registration:
     pattern:  /register/admin
-    defaults: { _controller: AcmeUserBundle:RegistrationAdmin:register }
+    defaults: { _controller: GestionUserBundle:RegistrationAdmin:register }
 
 

@@ -11,24 +11,13 @@ class ProfType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username')
-            ->add('usernameCanonical')
-            ->add('email')
-            ->add('emailCanonical')
-            ->add('enabled')
-            ->add('salt')
-            ->add('password')
-            ->add('lastLogin')
-            ->add('locked')
-            ->add('expired')
-            ->add('expiresAt')
-            ->add('confirmationToken')
-            ->add('passwordRequestedAt')
-            ->add('roles')
-            ->add('credentialsExpired')
-            ->add('credentialsExpireAt')
-            ->add('nom')
-            ->add('prenom')
+             ->add('username')
+                ->add('email')
+                ->add('enabled')
+                ->add('plainPassword')
+                ->add('roles')
+                ->add('nom')
+                ->add('prenom')
         ;
     }
 
