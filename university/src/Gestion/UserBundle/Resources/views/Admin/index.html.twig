@@ -3,29 +3,38 @@
 {% block body -%}
     <h1>Admin list</h1>
 
-    <table class="records_list">
-        <thead>
+     <table class="table table-bordered table-striped table-condensed table-hover" style="width: 80%; margin-left: 10%;margin-top: 100px;">
+         <thead>
             <tr>
-                <th>Id</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Enabled</th>
+                <th>Locked</th>
+                <th>Expired</th>
+                <th>Expiresat</th>
                 <th>Nom</th>
                 <th>Prenom</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for entity in entities %}
+ {% for entity in entities %}
             <tr>
                 <td><a href="{{ path('admin_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.nom }}</td>
+                 <td>{{ entity.email }}</td>
+                <td>{{ entity.enabled }}</td>
+                <td>{{ entity.locked }}</td>
+                <td>{{ entity.expired }}</td>
+                <td>{% if entity.expiresAt %}{{ entity.expiresAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+               <td>{{ entity.nom }}</td>
                 <td>{{ entity.prenom }}</td>
-                <td>
+            <td>
                 <ul>
-                    <li>
-                        <a href="{{ path('admin_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('admin_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
+                 
+                        <a class="btn btn-primary" href="{{ path('admin_show', { 'id': entity.id }) }}">show</a>
+                    
+                        <a class="btn btn-success" href="{{ path('admin_edit', { 'id': entity.id }) }}">edit</a>
+                  
                 </ul>
                 </td>
             </tr>
@@ -34,10 +43,10 @@
     </table>
 
         <ul>
-        <li>
-            <a href="{{ path('admin_new') }}">
-                Create a new entry
+    
+            <a class="btn btn-primary" href="{{ path('admin_registration') }}">
+                Add Admin
             </a>
-        </li>
+      
     </ul>
     {% endblock %}

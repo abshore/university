@@ -1,12 +1,63 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
 {% block fos_user_content %}
+{% block stylesheets %}
+      <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" type="text/css" />
+  <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}" />
+
+    {% endblock %}
     {% trans_default_domain 'FOSUserBundle' %}
 
-    <form action="{{ path('prof_registration') }}" {{ form_enctype(form) }} method="POST">
-        {{ form_widget(form) }}
+    <form  style="width: 80%; margin-left: 10%;margin-top: 100px;"  class="form-horizontal"  action="{{ path('prof_registration') }}" {{ form_enctype(form) }} method="POST">
+        <div class="form-group">
+            <label class="col-lg-2 control-label" for="inputEmail">{{ form_label(form.username) }}</label>
+            <div class="col-lg-5"> {{ form_widget(form.username, { 'attr': {'class': 'form-control'} }) }} </div>
+        </div>
+<div class="form-group">
+            <label class="col-lg-2 control-label" for="inputEmail">{{ form_label(form.email) }}</label>
+            <div class="col-lg-5"> {{ form_widget(form.email, { 'attr': {'class': 'form-control'} }) }} </div>
+        </div>
+
+<div class="form-group">
+            <label class="col-lg-2 control-label" for="inputEmail">{{ form_label(form.plainPassword) }}</label>
+            <div class="col-lg-5"> {{ form_widget(form.plainPassword, { 'attr': {'class': 'form-control'} }) }} </div>
+        </div>
+
+<div class="form-group">
+            <label class="col-lg-2 control-label" for="inputEmail">{{ form_label(form.roles) }}</label>
+            <div class="col-lg-5"> {{ form_widget(form.roles) }} </div>
+        </div>
+   <div class="form-group">
+            <label class="col-lg-2 control-label" for="inputEmail">{{ form_label(form.nom) }}</label>
+            <div class="col-lg-5"> {{ form_widget(form.nom, { 'attr': {'class': 'form-control'} }) }} </div>
+        </div>
+<div class="form-group">
+            <label class="col-lg-2 control-label" for="inputEmail">{{ form_label(form.prenom) }}</label>
+            <div class="col-lg-5"> {{ form_widget(form.prenom, { 'attr': {'class': 'form-control'} }) }} </div>
+        </div>
+
+
+  {{ form_rest(form) }}
+
+
         <div>
-            <input type="submit" value="{{ 'registration.submit'|trans }}" />
+            <input class="btn btn-primary"  type="submit" value="{{ 'registration.submit'|trans }}" />
         </div>
     </form>
+ {% block javascripts %}
+    {# Ajoutez ces javascripts si vous comptez vous servir des
+fonctionnalités du bootstrap Twitter #}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+ <script src="{{ asset('js/jquery-1.9.1.js')}}"></script>
+            <script src="{{ asset('js/jquery-ui.js') }}"></script>
+             
+       
+            <script type="text/javascript">
+                   $(function() {
+   $( ".form-control.date" ).datetimepicker();
+   });
+
+            </script>
+  {% endblock %}
 {% endblock fos_user_content %}
