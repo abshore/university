@@ -1,0 +1,30 @@
+etudiant:
+    pattern:  /
+    defaults: { _controller: "GestionUserBundle:Etudiant:index" }
+
+etudiant_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "GestionUserBundle:Etudiant:show" }
+
+etudiant_new:
+    pattern:  /new
+    defaults: { _controller: "GestionUserBundle:Etudiant:new" }
+
+etudiant_create:
+    pattern:  /create
+    defaults: { _controller: "GestionUserBundle:Etudiant:create" }
+    requirements: { _method: post }
+
+etudiant_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "GestionUserBundle:Etudiant:edit" }
+
+etudiant_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "GestionUserBundle:Etudiant:update" }
+    requirements: { _method: post|put }
+
+etudiant_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "GestionUserBundle:Etudiant:delete" }
+    requirements: { _method: post|delete }

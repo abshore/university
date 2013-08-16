@@ -1,0 +1,30 @@
+admin:
+    pattern:  /
+    defaults: { _controller: "GestionUserBundle:Admin:index" }
+
+admin_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "GestionUserBundle:Admin:show" }
+
+admin_new:
+    pattern:  /new
+    defaults: { _controller: "GestionUserBundle:Admin:new" }
+
+admin_create:
+    pattern:  /create
+    defaults: { _controller: "GestionUserBundle:Admin:create" }
+    requirements: { _method: post }
+
+admin_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "GestionUserBundle:Admin:edit" }
+
+admin_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "GestionUserBundle:Admin:update" }
+    requirements: { _method: post|put }
+
+admin_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "GestionUserBundle:Admin:delete" }
+    requirements: { _method: post|delete }

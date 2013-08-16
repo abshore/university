@@ -1,0 +1,30 @@
+gestion_user_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: GestionUserBundle:Default:index }
+
+GestionUserBundle_etudiant:
+    resource: "@GestionUserBundle/Resources/config/routing/etudiant.yml"
+    prefix:   /etudiant
+    
+
+GestionUserBundle_prof:
+    resource: "@GestionUserBundle/Resources/config/routing/prof.yml"
+    prefix:   /prof
+
+GestionUserBundle_admin:
+    resource: "@GestionUserBundle/Resources/config/routing/admin.yml"
+    prefix:   /admin
+
+
+etudiant_registration:
+    pattern:  /register/etudiant
+    defaults: { _controller: GestionUserBundle:RegistrationEtudiant:register }
+
+prof_registration:
+    pattern:  /register/prof
+    defaults: { _controller: AcmeUserBundle:RegistrationProf:register }
+admin_registration:
+    pattern:  /register/admin
+    defaults: { _controller: AcmeUserBundle:RegistrationAdmin:register }
+
+

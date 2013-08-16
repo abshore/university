@@ -1,0 +1,30 @@
+prof:
+    pattern:  /
+    defaults: { _controller: "GestionUserBundle:Prof:index" }
+
+prof_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "GestionUserBundle:Prof:show" }
+
+prof_new:
+    pattern:  /new
+    defaults: { _controller: "GestionUserBundle:Prof:new" }
+
+prof_create:
+    pattern:  /create
+    defaults: { _controller: "GestionUserBundle:Prof:create" }
+    requirements: { _method: post }
+
+prof_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "GestionUserBundle:Prof:edit" }
+
+prof_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "GestionUserBundle:Prof:update" }
+    requirements: { _method: post|put }
+
+prof_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "GestionUserBundle:Prof:delete" }
+    requirements: { _method: post|delete }
