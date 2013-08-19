@@ -5,10 +5,9 @@ security:
     role_hierarchy:
       
         ROLE_BOARD:      [ROLE_ADMIN, ROLE_PROF,ROLE_ETUDIANT]
-        ROLE_ADMIN : [ROLE_UNIVERSITY]
-        ROLE_PROF : [ROLE_UNIVERSITY]
-        ROLE_ETUDIANT : [ROLE_UNIVERSITY]
-        ROLE_SUPER_ADMIN: [ROLE_UNIVERSITY,ROLE_ALLOWED_TO_SWITCH]
+        ROLE_ADMIN : ROLE_ADMIN
+        ROLE_PROF : ROLE_PROF
+        ROLE_ETUDIANT : ROLE_ETUDIANT
 
     providers:
         fos_userbundle:

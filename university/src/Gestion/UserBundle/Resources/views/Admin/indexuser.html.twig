@@ -20,7 +20,7 @@
         <tbody>
  {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('admin_show', { 'id': entity.id }) }}">{{ entity.username }}</a></td>
+                <td><a href="{{ path('admin_show', { 'id': entity.username }) }}">{{ entity.username }}</a></td>
                  <td>{{ entity.email }}</td>
                 <td>{{ entity.enabled }}</td>
                 <td>{{ entity.locked }}</td>
@@ -49,4 +49,11 @@
             </a>
       
     </ul>
+
+      <form action="{{ path('username') }}" method="post">
+        
+             <p>Username: <input type="text" name="username" /></p>
+       
+            <button class="btn btn-success" type="submit">Chercher</button>
+        </form>
     {% endblock %}

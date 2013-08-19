@@ -36,7 +36,35 @@ class EtudiantController extends Controller
     public function createAction(Request $request)
     {
         $entity  = new Etudiant();
-        $form = $this->createForm(new EtudiantType(), $entity);
+        //$form = $this->createForm(new EtudiantType(), $entity);
+        
+        $roles_choices = array();
+
+        $roles = $this->container->getParameter('security.role_hierarchy.roles');
+
+# set roles array, displaying inherited roles between parentheses
+        foreach ($roles as $role => $inherited_roles) {
+            foreach ($inherited_roles as $id => $inherited_role) {
+                if (!array_key_exists($inherited_role, $roles_choices)) {
+                    $roles_choices[$inherited_role] = $inherited_role;
+                }
+            }
+
+            if (!array_key_exists($role, $roles_choices)) {
+                $roles_choices[$role] = $role . ' (' .
+                        implode(', ', $inherited_roles) . ')';
+            }
+        }
+
+# todo: set $role as the current role of the user
+
+        $form  = $this->createForm(
+                new EtudiantType(array(
+                    # pass $roles to the constructor
+                    'roles' => $roles_choices,
+                    'role' => $role
+                )), $entity);
+        /**********************/
         $form->bind($request);
 
         if ($form->isValid()) {
@@ -60,7 +88,35 @@ class EtudiantController extends Controller
     public function newAction()
     {
         $entity = new Etudiant();
-        $form   = $this->createForm(new EtudiantType(), $entity);
+     //   $form   = $this->createForm(new EtudiantType(), $entity);
+        
+        $roles_choices = array();
+
+        $roles = $this->container->getParameter('security.role_hierarchy.roles');
+
+# set roles array, displaying inherited roles between parentheses
+        foreach ($roles as $role => $inherited_roles) {
+            foreach ($inherited_roles as $id => $inherited_role) {
+                if (!array_key_exists($inherited_role, $roles_choices)) {
+                    $roles_choices[$inherited_role] = $inherited_role;
+                }
+            }
+
+            if (!array_key_exists($role, $roles_choices)) {
+                $roles_choices[$role] = $role . ' (' .
+                        implode(', ', $inherited_roles) . ')';
+            }
+        }
+
+# todo: set $role as the current role of the user
+
+        $form  = $this->createForm(
+                new EtudiantType(array(
+                    # pass $roles to the constructor
+                    'roles' => $roles_choices,
+                    'role' => $role
+                )), $entity);
+        /**********************/
 
         return $this->render('GestionUserBundle:Etudiant:new.html.twig', array(
             'entity' => $entity,
@@ -103,9 +159,39 @@ class EtudiantController extends Controller
             throw $this->createNotFoundException('Unable to find Etudiant entity.');
         }
 
-        $editForm = $this->createForm(new EtudiantType(), $entity);
+       // $editForm = $this->createForm(new EtudiantType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
+         /************************/
+        
+        $roles_choices = array();
 
+        $roles = $this->container->getParameter('security.role_hierarchy.roles');
+
+# set roles array, displaying inherited roles between parentheses
+        foreach ($roles as $role => $inherited_roles) {
+            foreach ($inherited_roles as $id => $inherited_role) {
+                if (!array_key_exists($inherited_role, $roles_choices)) {
+                    $roles_choices[$inherited_role] = $inherited_role;
+                }
+            }
+
+            if (!array_key_exists($role, $roles_choices)) {
+                $roles_choices[$role] = $role . ' (' .
+                        implode(', ', $inherited_roles) . ')';
+            }
+        }
+
+# todo: set $role as the current role of the user
+
+        $editForm  = $this->createForm(
+                new EtudiantType(array(
+                    # pass $roles to the constructor
+                    'roles' => $roles_choices,
+                    'role' => $role
+                )), $entity);
+        /**********************/
+
+//$editForm = $this->createForm(new EtudiantType(), $entity, array('roles' => $this->container->getParameter('security.role_hierarchy.roles')));
         return $this->render('GestionUserBundle:Etudiant:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
@@ -118,7 +204,7 @@ class EtudiantController extends Controller
      *
      */
     public function updateAction(Request $request, $id)
-    {
+    {   $ide=$id;
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('GestionUserBundle:Etudiant')->find($id);
@@ -126,16 +212,39 @@ class EtudiantController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Etudiant entity.');
         }
+     
+       $roles_choices = array();
 
+        $roles = $this->container->getParameter('security.role_hierarchy.roles');
+# set roles array, displaying inherited roles between parentheses
+        foreach ($roles as $role => $inherited_roles) {
+            foreach ($inherited_roles as $id => $inherited_role) {
+                if (!array_key_exists($inherited_role, $roles_choices)) {
+                    $roles_choices[$inherited_role] = $inherited_role;
+                }
+            }
+
+            if (!array_key_exists($role, $roles_choices)) {
+                $roles_choices[$role] = $role . ' (' .
+                        implode(', ', $inherited_roles) . ')';
+            }
+        }
+        
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new EtudiantType(), $entity);
+        //$editForm = $this->createForm(new EtudiantType(), $entity);
+         $editForm  = $this->createForm(
+                new EtudiantType(array(
+                    # pass $roles to the constructor
+                    'roles' => $roles_choices,
+                    'role' => $role
+                )), $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('etudiant_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('etudiant_edit', array('id' => $ide)));
         }
 
         return $this->render('GestionUserBundle:Etudiant:edit.html.twig', array(

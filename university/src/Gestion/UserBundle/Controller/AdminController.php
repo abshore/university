@@ -29,6 +29,37 @@ class AdminController extends Controller
             'entities' => $entities,
         ));
     }
+    
+    /**
+     * Lists all Admin entities.
+     *
+     */
+    public function usernameAction()
+    {   
+        $username='';
+        $username=$_POST['username'];
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('GestionUserBundle:User')->findBy(array('username'=>$username));
+
+        return $this->render('GestionUserBundle:Admin:username.html.twig', array(
+            'entities' => $entities,
+        ));
+    }
+    /**
+     * Lists all Admin entities.
+     *
+     */
+    public function indexuserAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('GestionUserBundle:User')->findAll();
+
+        return $this->render('GestionUserBundle:Admin:indexuser.html.twig', array(
+            'entities' => $entities,
+        ));
+    }
     /**
      * Creates a new Admin entity.
      *

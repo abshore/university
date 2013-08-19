@@ -1,6 +1,12 @@
 admin:
     pattern:  /
     defaults: { _controller: "GestionUserBundle:Admin:index" }
+user:
+    pattern:  /user
+    defaults: { _controller: "GestionUserBundle:Admin:indexuser" }
+username:
+    pattern:  /username
+    defaults: { _controller: "GestionUserBundle:Admin:username" }
 
 admin_show:
     pattern:  /{id}/show
