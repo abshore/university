@@ -38,13 +38,45 @@ class AdminController extends Controller
     {   
         $username='';
         $username=$_POST['username'];
+        $choix = $_POST['recherche'];
         $em = $this->getDoctrine()->getManager();
+        switch ($choix) {
+            case 'username':
+                $entities = $em->getRepository('GestionUserBundle:Admin')->findBy(array('username' => $username));
 
-        $entities = $em->getRepository('GestionUserBundle:User')->findBy(array('username'=>$username));
+                return $this->render('GestionUserBundle:Admin:username.html.twig', array(
+                            'entities' => $entities,));
+                break;
+            case 'nom':
+                $entities = $em->getRepository('GestionUserBundle:Admin')->findBy(array('nom' => $username));
+
+                return $this->render('GestionUserBundle:Admin:username.html.twig', array(
+                            'entities' => $entities,));
+                break;
+            case 'prenom':
+                $entities = $em->getRepository('GestionUserBundle:Admin')->findBy(array('prenom' => $username));
+
+                return $this->render('GestionUserBundle:Admin:username.html.twig', array(
+                            'entities' => $entities,));
+                break;
+            case 'email':
+               $entities = $em->getRepository('GestionUserBundle:Admin')->findBy(array('email' => $username));
+
+                return $this->render('GestionUserBundle:Admin:username.html.twig', array(
+                            'entities' => $entities,));
+                break;
+            default:
+                $entities = $em->getRepository('GestionUserBundle:Admin')->findAll();
 
         return $this->render('GestionUserBundle:Admin:username.html.twig', array(
             'entities' => $entities,
         ));
+        }
+        
+        
+           
+            
+       
     }
     /**
      * Lists all Admin entities.

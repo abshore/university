@@ -1,7 +1,9 @@
 etudiant:
     pattern:  /
     defaults: { _controller: "GestionUserBundle:Etudiant:index" }
-
+etudiant_username:
+    pattern:  /etudiantusername
+    defaults: { _controller: "GestionUserBundle:Etudiant:username" }
 etudiant_show:
     pattern:  /{id}/show
     defaults: { _controller: "GestionUserBundle:Etudiant:show" }

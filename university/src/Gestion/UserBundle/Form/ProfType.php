@@ -17,7 +17,10 @@ class ProfType extends AbstractType
             ->add('plainPassword')
             ->add('expired')
             ->add('expiresAt')
-            ->add('roles')
+            ->add('roles', 'choice', array(
+                    'choices'   => array('ROLE_PROF' => 'ROLE_PROF', 'ROLE_ETUDIANT' => 'ROLE_ETUDIANT','ROLE_ADMIN'=>'ROLE_ADMIN'),
+                     'multiple'  => true,
+                   ))
             ->add('nom')
             ->add('prenom')
         ;

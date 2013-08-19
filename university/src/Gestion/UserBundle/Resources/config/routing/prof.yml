@@ -1,7 +1,9 @@
 prof:
     pattern:  /
     defaults: { _controller: "GestionUserBundle:Prof:index" }
-
+prof_username:
+    pattern:  /profusername
+    defaults: { _controller: "GestionUserBundle:Prof:username" }
 prof_show:
     pattern:  /{id}/show
     defaults: { _controller: "GestionUserBundle:Prof:show" }

@@ -49,4 +49,27 @@
             </a>
       
     </ul>
+<div style="width: 80%; margin-left: 10%;margin-top: 50px;" class="panel">
+ <div class="panel-heading">Moteur de recherche</div>
+ <div class="panel-body">
+ <form  class="form-inline" role="form" action="{{ path('username') }}" method="post">
+        <div class="form-group">
+        <div class="col-lg-3">
+          <input type="text" class="form-control " id="exampleInputEmail2" name="username" placeholder="Search">
+      </div>
+ </div>
+            <div class="col-lg-3"> 
+            <select name="recherche" class="form-control">
+                <option value="username">Username</option>
+                <option value="nom">Nom</option>
+                <option value="prenom">Prenom</option>
+                <option value="email">Email</option>
+                
+</select>
+</div>
+            <button class="btn btn-default" type="submit">Chercher</button>
+        </form>
+</div>
+</div>
     {% endblock %}
+

@@ -15,6 +15,50 @@ use Gestion\UserBundle\Form\ProfType;
 class ProfController extends Controller
 {
 
+    public function usernameAction()
+    {   
+        $username='';
+        $username=$_POST['username'];
+        $choix = $_POST['recherche'];
+        $em = $this->getDoctrine()->getManager();
+        switch ($choix) {
+            case 'username':
+                $entities = $em->getRepository('GestionUserBundle:Prof')->findBy(array('username' => $username));
+
+                return $this->render('GestionUserBundle:Prof:username.html.twig', array(
+                            'entities' => $entities,));
+                break;
+            case 'nom':
+                $entities = $em->getRepository('GestionUserBundle:Prof')->findBy(array('nom' => $username));
+
+                return $this->render('GestionUserBundle:Prof:username.html.twig', array(
+                            'entities' => $entities,));
+                break;
+            case 'prenom':
+                $entities = $em->getRepository('GestionUserBundle:Prof')->findBy(array('prenom' => $username));
+
+                return $this->render('GestionUserBundle:Prof:username.html.twig', array(
+                            'entities' => $entities,));
+                break;
+            case 'email':
+               $entities = $em->getRepository('GestionUserBundle:Prof')->findBy(array('email' => $username));
+
+                return $this->render('GestionUserBundle:Prof:username.html.twig', array(
+                            'entities' => $entities,));
+                break;
+            default:
+                $entities = $em->getRepository('GestionUserBundle:Prof')->findAll();
+
+        return $this->render('GestionUserBundle:Prof:username.html.twig', array(
+            'entities' => $entities,
+        ));
+        }
+        
+        
+           
+            
+       
+    }
     /**
      * Lists all Prof entities.
      *
