@@ -24,7 +24,13 @@ admin_create:
 admin_edit:
     pattern:  /{id}/edit
     defaults: { _controller: "GestionUserBundle:Admin:edit" }
-
+admin_editperso:
+    pattern:  /editperso
+    defaults: { _controller: "GestionUserBundle:Admin:editperso" }
+admin_updateperso:
+    pattern:  /updateperso
+    defaults: { _controller: "GestionUserBundle:Admin:updateperso" }
+    requirements: { _method: post|put }
 admin_update:
     pattern:  /{id}/update
     defaults: { _controller: "GestionUserBundle:Admin:update" }

@@ -336,4 +336,63 @@ class EtudiantController extends Controller
             ->getForm()
         ;
     }
+    
+    
+    /**
+     * Displays a form to edit an existing Admin entity.
+     *
+     */
+    public function editpersoAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+          $iduser = $this->get('security.context')->getToken()->getUser()->getId();
+        $id = '' . $iduser;
+        $entity = $em->getRepository('GestionUserBundle:Etudiant')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Etudiant entity.');
+        }
+
+        $editForm = $this->createForm(new EtudiantType(), $entity);
+        $deleteForm = $this->createDeleteForm($id);
+
+        return $this->render('GestionUserBundle:Etudiant:editperso.html.twig', array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
+     * Edits an existing Admin entity.
+     *
+     */
+    public function updatepersoAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+         $iduser = $this->get('security.context')->getToken()->getUser()->getId();
+        $id = '' . $iduser;
+        $entity = $em->getRepository('GestionUserBundle:Etudiant')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Etudiant entity.');
+        }
+
+        $deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createForm(new EtudiantType(), $entity);
+        $editForm->bind($request);
+
+        if ($editForm->isValid()) {
+            $em->persist($entity);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('etudiant_editperso', array('id' => $id)));
+        }
+
+        return $this->render('GestionUserBundle:Etudiant:editperso.html.twig', array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
 }

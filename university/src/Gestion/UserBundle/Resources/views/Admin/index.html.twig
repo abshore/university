@@ -1,7 +1,31 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-   
+   <div style="width: 80%; margin-left: 10%;margin-top: 50px;" class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Moteur de recherche</h3>
+  </div>
+  <div class="panel-body">
+    <form  class="form-inline" role="form" action="{{ path('username') }}" method="post">
+        <div class="form-group">
+          <input type="text" class="form-control" name="username" placeholder="Search">
+          
+ </div>
+            <div class="col-lg-3"> 
+            <select name="recherche" class="form-control">
+                <option value="username">Username</option>
+                <option value="nom">Nom</option>
+                <option value="prenom">Prenom</option>
+                <option value="email">Email</option>
+                
+</select>
+</div>
+            <button class="btn btn-default" type="submit">Chercher</button>
+        </form>
+  </div>
+</div>
+
+
 
      <table class="table table-bordered table-striped table-condensed table-hover" style="width: 80%; margin-left: 10%;margin-top: 100px;">
       
@@ -51,30 +75,6 @@
       
     </ul>
 
-
-<div style="width: 80%; margin-left: 10%;margin-top: 50px;" class="panel panel-primary">
-  <div class="panel-heading">
-    <h3 class="panel-title">Moteur de recherche</h3>
-  </div>
-  <div class="panel-body">
-    <form  class="form-inline" role="form" action="{{ path('username') }}" method="post">
-        <div class="form-group">
-          <input type="text" class="form-control" name="username" placeholder="Search">
-          
- </div>
-            <div class="col-lg-3"> 
-            <select name="recherche" class="form-control">
-                <option value="username">Username</option>
-                <option value="nom">Nom</option>
-                <option value="prenom">Prenom</option>
-                <option value="email">Email</option>
-                
-</select>
-</div>
-            <button class="btn btn-default" type="submit">Chercher</button>
-        </form>
-  </div>
-</div>
 
 
 

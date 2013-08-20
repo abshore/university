@@ -13,12 +13,23 @@
        <div class="container">
       <nav class="navbar navbar-default" role="navigation">
  
+ <div class="navbar-header">
+    
+    <a class="navbar-brand" href="{{ path('tableau_board') }}">Dashboard</a>
+  </div>
+
 
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
 
+  {% if is_granted('ROLE_ADMIN') %}
+ <li><a href="{{ path('etudiant') }}">Gestion des étudiants</a></li>
+            <li><a href="{{ path('prof') }}">Gestion des profs</a></li>
+             <li><a href="{{ path('admin') }}">Gestion des admins</a></li>
+ {%endif%}
 
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+           
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
                     Bienvenue {{ app.user.username }}<b class="caret"></b>
@@ -32,10 +43,19 @@
                        
                           <li><a tabindex="-1" href="{{ path('tableau_board') }}">Tableau de Board</a></li>
                         <li class="divider"></li>
-                      
-                         <li><a tabindex="-1" href="{{ path('fos_user_profile_edit') }}">Modifier mon profil</a></li>
+                                 {% if is_granted('ROLE_ETUDIANT') %}  
+                        <li><a tabindex="-1" href="{{ path('etudiant_editperso') }}">Modifier mon profil</a></li>
                         <li class="divider"></li>
-                       
+                         {%endif%}
+                                  {% if is_granted('ROLE_PROF') %}  
+                        <li><a tabindex="-1" href="{{ path('prof_editperso') }}">Modifier mon profil</a></li>
+                        <li class="divider"></li>
+                         {%endif%}
+                                  {% if is_granted('ROLE_ADMIN') %}  
+                        <li><a tabindex="-1" href="{{ path('admin_editperso') }}">Modifier mon profil</a></li>
+                        <li class="divider"></li>
+                         {%endif%}
+        
  
 
  <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>

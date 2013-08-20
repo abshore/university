@@ -11,7 +11,13 @@ prof_show:
 prof_new:
     pattern:  /new
     defaults: { _controller: "GestionUserBundle:Prof:new" }
-
+prof_editperso:
+    pattern:  /editperso
+    defaults: { _controller: "GestionUserBundle:Prof:editperso" }
+prof_updateperso:
+    pattern:  /updateperso
+    defaults: { _controller: "GestionUserBundle:Prof:updateperso" }
+    requirements: { _method: post|put }
 prof_create:
     pattern:  /create
     defaults: { _controller: "GestionUserBundle:Prof:create" }

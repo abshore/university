@@ -13,6 +13,10 @@ class ProfType extends AbstractType
         $builder
               ->add('username')
             ->add('email')
+            ->add('tel')
+            ->add('mobile')
+            ->add('cv')
+            ->add('presentation')
             ->add('enabled')
             ->add('plainPassword')
             ->add('expired')

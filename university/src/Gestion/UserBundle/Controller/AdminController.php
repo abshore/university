@@ -208,6 +208,64 @@ class AdminController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
+    
+    /**
+     * Displays a form to edit an existing Admin entity.
+     *
+     */
+    public function editpersoAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+          $iduser = $this->get('security.context')->getToken()->getUser()->getId();
+        $id = '' . $iduser;
+        $entity = $em->getRepository('GestionUserBundle:Admin')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Admin entity.');
+        }
+
+        $editForm = $this->createForm(new AdminType(), $entity);
+        $deleteForm = $this->createDeleteForm($id);
+
+        return $this->render('GestionUserBundle:Admin:editperso.html.twig', array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
+     * Edits an existing Admin entity.
+     *
+     */
+    public function updatepersoAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+         $iduser = $this->get('security.context')->getToken()->getUser()->getId();
+        $id = '' . $iduser;
+        $entity = $em->getRepository('GestionUserBundle:Admin')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Admin entity.');
+        }
+
+        $deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createForm(new AdminType(), $entity);
+        $editForm->bind($request);
+
+        if ($editForm->isValid()) {
+            $em->persist($entity);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('admin_editperso', array('id' => $id)));
+        }
+
+        return $this->render('GestionUserBundle:Admin:editperso.html.twig', array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
     /**
      * Deletes a Admin entity.
      *

@@ -36,7 +36,31 @@ class Etudiant extends User
      * @ORM\Column(name="prenom", type="string", length=255)
      */
     protected $prenom;
-
+    
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="tel", type="string", length=255, nullable=true)
+     */
+    protected $tel;
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="mobile", type="string", length=255, nullable=true)
+     */
+    protected $mobile;
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="cv", type="string", length=255, nullable=true)
+     */
+    protected $cv;
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="presentation", type="text", nullable=true)
+     */
+    protected $presentation;
 
     /**
      * Get id
@@ -92,5 +116,97 @@ class Etudiant extends User
     public function getPrenom()
     {
         return $this->prenom;
+    }
+
+    /**
+     * Set tel
+     *
+     * @param string $tel
+     * @return Etudiant
+     */
+    public function setTel($tel)
+    {
+        $this->tel = $tel;
+    
+        return $this;
+    }
+
+    /**
+     * Get tel
+     *
+     * @return string 
+     */
+    public function getTel()
+    {
+        return $this->tel;
+    }
+
+    /**
+     * Set mobile
+     *
+     * @param string $mobile
+     * @return Etudiant
+     */
+    public function setMobile($mobile)
+    {
+        $this->mobile = $mobile;
+    
+        return $this;
+    }
+
+    /**
+     * Get mobile
+     *
+     * @return string 
+     */
+    public function getMobile()
+    {
+        return $this->mobile;
+    }
+
+    /**
+     * Set cv
+     *
+     * @param string $cv
+     * @return Etudiant
+     */
+    public function setCv($cv)
+    {
+        $this->cv = $cv;
+    
+        return $this;
+    }
+
+    /**
+     * Get cv
+     *
+     * @return string 
+     */
+    public function getCv()
+    {
+        return $this->cv;
+    }
+
+    /**
+     * Set presentation
+     *
+     * @param string $presentation
+     * @return Etudiant
+     */
+    public function setPresentation($presentation)
+    {
+        $this->presentation = $presentation;
+    
+        return $this;
+    }
+
+    /**
+     * Get presentation
+     *
+     * @return string 
+     */
+    public function getPresentation()
+    {
+        return $this->presentation;
     }
 }

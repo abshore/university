@@ -7,7 +7,13 @@ etudiant_username:
 etudiant_show:
     pattern:  /{id}/show
     defaults: { _controller: "GestionUserBundle:Etudiant:show" }
-
+etudiant_editperso:
+    pattern:  /editperso
+    defaults: { _controller: "GestionUserBundle:Etudiant:editperso" }
+etudiant_updateperso:
+    pattern:  /updateperso
+    defaults: { _controller: "GestionUserBundle:Etudiant:updateperso" }
+    requirements: { _method: post|put }
 etudiant_new:
     pattern:  /new
     defaults: { _controller: "GestionUserBundle:Etudiant:new" }
