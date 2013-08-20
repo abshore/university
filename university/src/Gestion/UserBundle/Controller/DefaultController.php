@@ -10,4 +10,16 @@ class DefaultController extends Controller
     {
         return $this->render('GestionUserBundle:Default:index.html.twig', array('name' => $name));
     }
+    public function DashboardAction()
+    {
+        $csrfToken = $this->container->has('form.csrf_provider')
+            ? $this->container->get('form.csrf_provider')->generateCsrfToken('authenticate')
+            : null;
+        return $this->render('GestionUserBundle:Default:dashboard.html.twig', array(
+               
+               'last_username' => null,
+               'error'         => null,
+                'csrf_token' =>$csrfToken
+            ));
+    }
 }

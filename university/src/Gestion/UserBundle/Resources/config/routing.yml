@@ -26,5 +26,9 @@ prof_registration:
 admin_registration:
     pattern:  /register/admin
     defaults: { _controller: GestionUserBundle:RegistrationAdmin:register }
+    
+tableau_board:
+    pattern: /TableauBoard
+    defaults: { _controller: GestionUserBundle:Default:Dashboard }
 
 

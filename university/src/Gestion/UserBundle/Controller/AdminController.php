@@ -27,6 +27,7 @@ class AdminController extends Controller
 
         return $this->render('GestionUserBundle:Admin:index.html.twig', array(
             'entities' => $entities,
+            
         ));
     }
     

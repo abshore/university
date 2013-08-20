@@ -1,0 +1,77 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+  
+ 
+<div  style=" height: 1000px;min-height: 100%; margin-left: 10%;margin-right: 10%;margin-top: 8%;" align="center" >
+
+
+
+
+ 
+<div class="row">
+
+
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img src="{{ asset('img/superadmin.png') }}"/>
+      <div class="caption">
+        <h3>Gestion des étudiants</h3>
+       
+        <p>
+       <a  href="{{ path('etudiant') }}"  class="btn btn-primary">Action</a>
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+
+
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img src="{{ asset('img/superadmin.png') }}"/>
+      <div class="caption">
+        <h3>Gestion des admin</h3>
+       
+        <p>
+       <a  href="{{ path('admin') }}"  class="btn btn-primary">Action</a>
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+
+
+
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img src="{{ asset('img/superadmin.png') }}"/>
+      <div class="caption">
+        <h3>Gestion des prof</h3>
+       
+        <p>
+       <a  href="{{ path('prof') }}"  class="btn btn-primary">Action</a>
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+
+
+ </div>
+
+
+
+ 
+   
+
+</div>
+
+
+    {% endblock %}
+

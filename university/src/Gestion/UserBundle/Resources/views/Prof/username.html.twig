@@ -51,14 +51,17 @@
     </ul>
 
 
-<div style="width: 80%; margin-left: 10%;margin-top: 50px;" class="panel">
- <div class="panel-heading">Moteur de recherche</div>
- <div class="panel-body">
- <form  class="form-inline" role="form" action="{{ path('prof_username') }}" method="post">
+
+
+<div style="width: 80%; margin-left: 10%;margin-top: 50px;" class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Moteur de recherche</h3>
+  </div>
+  <div class="panel-body">
+    <form  class="form-inline" role="form" action="{{ path('prof_username') }}" method="post">
         <div class="form-group">
-        <div class="col-lg-3">
-          <input type="text" class="form-control " id="exampleInputEmail2" name="username" placeholder="Search">
-      </div>
+          <input type="text" class="form-control" name="username" placeholder="Search">
+          
  </div>
             <div class="col-lg-3"> 
             <select name="recherche" class="form-control">
@@ -71,6 +74,7 @@
 </div>
             <button class="btn btn-default" type="submit">Chercher</button>
         </form>
+  </div>
 </div>
-</div>
+
     {% endblock %}
