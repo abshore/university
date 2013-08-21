@@ -23,11 +23,27 @@
     <ul class="nav navbar-nav">
 
   {% if is_granted('ROLE_ADMIN') %}
- <li><a href="{{ path('etudiant') }}">Gestion des étudiants</a></li>
-            <li><a href="{{ path('prof') }}">Gestion des profs</a></li>
-             <li><a href="{{ path('admin') }}">Gestion des admins</a></li>
- {%endif%}
 
+   <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
+                    Gérer Users<b class="caret"></b>
+                </a>
+
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                         <li><a tabindex="-1" href="{{ path('etudiant') }}">Etudiants</a></li>
+                        <li class="divider"></li>
+                                
+                        <li><a tabindex="-1" href="{{ path('prof') }}">Profs</a></li>
+                        <li class="divider"></li>
+
+                           <li><a tabindex="-1" href="{{ path('admin') }}">Admins</a></li>
+                     
+                </ul>
+                </li>
+
+
+ {%endif%}
+  
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
            
             <li class="dropdown">

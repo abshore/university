@@ -4,8 +4,11 @@ namespace Gestion\UserBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Acme\DemoBundle\Entity\Document;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Gestion\UserBundle\Entity\Admin;
+use Gestion\UserBundle\Form\AdmineditType;
 use Gestion\UserBundle\Form\AdminType;
 
 /**
@@ -224,7 +227,7 @@ class AdminController extends Controller
             throw $this->createNotFoundException('Unable to find Admin entity.');
         }
 
-        $editForm = $this->createForm(new AdminType(), $entity);
+        $editForm = $this->createForm(new AdmineditType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('GestionUserBundle:Admin:editperso.html.twig', array(
@@ -250,7 +253,7 @@ class AdminController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new AdminType(), $entity);
+        $editForm = $this->createForm(new AdmineditType(), $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
@@ -304,4 +307,34 @@ class AdminController extends Controller
             ->getForm()
         ;
     }
+    
+    /**
+ * @Template()
+ */
+public function uploadAction()
+{
+    $document = new Document();
+    $form = $this->createFormBuilder($document)
+        ->add('name')
+        ->add('file')
+        ->getForm()
+    ;
+
+    if ($this->getRequest()->isMethod('POST')) {
+        $form->bind($this->getRequest());
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            
+             //$document->upload();
+            
+            $em->persist($document);
+            $em->flush();
+
+            $this->redirect($this->generateUrl('admin'));
+        }
+    }
+
+    return array('form' => $form->createView());
+}
+
 }

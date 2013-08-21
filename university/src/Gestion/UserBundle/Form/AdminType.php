@@ -26,6 +26,7 @@ class AdminType extends AbstractType {
                    ))
             ->add('nom')
             ->add('prenom')
+            ->add('doc')
         ;
     }
 

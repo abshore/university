@@ -39,6 +39,7 @@
                 <th>Expiresat</th>
                 <th>Nom</th>
                 <th>Prenom</th>
+                  <th>Doc</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -53,6 +54,7 @@
                 <td>{% if entity.expiresAt %}{{ entity.expiresAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                <td>{{ entity.nom }}</td>
                 <td>{{ entity.prenom }}</td>
+                 <td>{{ entity.doc }}</td>
             <td>
                 <ul>
                  

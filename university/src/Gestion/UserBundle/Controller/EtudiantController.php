@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Gestion\UserBundle\Entity\Etudiant;
 use Gestion\UserBundle\Form\EtudiantType;
+use Gestion\UserBundle\Form\EtudianteditType;
 
 /**
  * Etudiant controller.
@@ -353,7 +354,7 @@ class EtudiantController extends Controller
             throw $this->createNotFoundException('Unable to find Etudiant entity.');
         }
 
-        $editForm = $this->createForm(new EtudiantType(), $entity);
+        $editForm = $this->createForm(new EtudianteditType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('GestionUserBundle:Etudiant:editperso.html.twig', array(
@@ -379,7 +380,7 @@ class EtudiantController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new EtudiantType(), $entity);
+        $editForm = $this->createForm(new EtudianteditType(), $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {

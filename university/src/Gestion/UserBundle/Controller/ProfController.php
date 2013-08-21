@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Gestion\UserBundle\Entity\Prof;
 use Gestion\UserBundle\Form\ProfType;
+use Gestion\UserBundle\Form\ProfeditType;
 
 /**
  * Prof controller.
@@ -244,7 +245,7 @@ class ProfController extends Controller
             throw $this->createNotFoundException('Unable to find Prof entity.');
         }
 
-        $editForm = $this->createForm(new ProfType(), $entity);
+        $editForm = $this->createForm(new ProfeditType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('GestionUserBundle:Prof:editperso.html.twig', array(
@@ -270,7 +271,7 @@ class ProfController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new ProfType(), $entity);
+        $editForm = $this->createForm(new ProfeditType(), $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {

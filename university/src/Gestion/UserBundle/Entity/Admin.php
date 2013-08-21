@@ -7,6 +7,7 @@ use PUGX\MultiUserBundle\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="admin")
  * @UniqueEntity(fields = "username", targetClass = "Gestion\UserBundle\Entity\User", message="fos_user.username.already_used")
  * @UniqueEntity(fields = "email", targetClass = "Gestion\UserBundle\Entity\User", message="fos_user.email.already_used")
@@ -59,6 +60,12 @@ class Admin extends User
      * @ORM\Column(name="presentation", type="text", nullable=true)
      */
     protected $presentation;
+    
+     /**
+     * @var string $image
+     * @ORM\Column(name="doc", type="string", length=255)
+     */
+     protected $doc;
 
     /**
      * Get id
@@ -207,4 +214,83 @@ class Admin extends User
     {
         return $this->presentation;
     }
+
+    /**
+     * Set doc
+     *
+     * @param string $doc
+     * @return Admin
+     */
+    public function setDoc($doc)
+    {
+        $this->doc = $doc;
+    
+        return $this;
+    }
+
+    /**
+     * Get doc
+     *
+     * @return string 
+     */
+    public function getDoc()
+    {
+        return $this->doc;
+    }
+    
+    public function getFullDocPath() {
+        return null === $this->doc ? null : $this->getUploadRootDir(). $this->doc;
+    }
+ 
+    protected function getUploadRootDir() {
+        // the absolute directory path where uploaded documents should be saved
+        return $this->getTmpUploadRootDir().$this->getId()."/";
+    }
+ 
+    protected function getTmpUploadRootDir() {
+        // the absolute directory path where uploaded documents should be saved
+        return __DIR__ . '/../../../../web/upload/';
+    }
+ 
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function uploadDoc() {
+        // the file property can be empty if the field is not required
+        if (null === $this->doc) {
+            return;
+        }
+        if(!$this->id){
+            $this->doc->move($this->getTmpUploadRootDir(), $this->doc->getClientOriginalName());
+        }else{
+            $this->doc->move($this->getUploadRootDir(), $this->doc->getClientOriginalName());
+        }
+        $this->setDoc($this->doc->getClientOriginalName());
+    }
+     
+    /**
+     * @ORM\PostPersist()
+     */
+    public function moveDoc()
+    {
+        if (null === $this->doc) {
+            return;
+        }
+        if(!is_dir($this->getUploadRootDir())){
+            mkdir($this->getUploadRootDir());
+        }
+        copy($this->getTmpUploadRootDir().$this->doc, $this->getFullDocPath());
+        unlink($this->getTmpUploadRootDir().$this->doc);
+    }
+ 
+    /**
+     * @ORM\PreRemove()
+     */
+    public function removeDoc()
+    {
+        unlink($this->getFullDocPath());
+        rmdir($this->getUploadRootDir());
+    }
+
 }
