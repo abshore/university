@@ -10,6 +10,13 @@ etudiant_show:
 etudiant_editperso:
     pattern:  /editperso
     defaults: { _controller: "GestionUserBundle:Etudiant:editperso" }
+etudiant_editpwd:
+    pattern:  /editpwd
+    defaults: { _controller: "GestionUserBundle:Etudiant:editpwd" }
+etudiant_updatepwd:
+    pattern:  /updatepwd
+    defaults: { _controller: "GestionUserBundle:Etudiant:updatepwd" }
+    requirements: { _method: post|put }
 etudiant_updateperso:
     pattern:  /updateperso
     defaults: { _controller: "GestionUserBundle:Etudiant:updateperso" }

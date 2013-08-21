@@ -19,6 +19,8 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_provider: form.csrf_provider
+                success_handler: acme_login_success_handler
+                failure_path:   null
             logout:       true
             anonymous:    true
 

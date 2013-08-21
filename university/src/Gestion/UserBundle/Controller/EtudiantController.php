@@ -9,6 +9,8 @@ use Gestion\UserBundle\Entity\Etudiant;
 use Gestion\UserBundle\Form\EtudiantType;
 use Gestion\UserBundle\Form\EtudianteditType;
 
+use Gestion\UserBundle\Form\EtudiantpwdType;
+
 /**
  * Etudiant controller.
  *
@@ -391,6 +393,66 @@ class EtudiantController extends Controller
         }
 
         return $this->render('GestionUserBundle:Etudiant:editperso.html.twig', array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+    
+    
+    /**
+     * Displays a form to edit an existing Admin entity.
+     *
+     */
+    public function editpwdAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+          $iduser = $this->get('security.context')->getToken()->getUser()->getId();
+        $id = '' . $iduser;
+        $entity = $em->getRepository('GestionUserBundle:Etudiant')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Etudiant entity.');
+        }
+
+        $editForm = $this->createForm(new EtudiantpwdType(), $entity);
+        $deleteForm = $this->createDeleteForm($id);
+
+        return $this->render('GestionUserBundle:Etudiant:editpwd.html.twig', array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
+     * Edits an existing Admin entity.
+     *
+     */
+    public function updatepwdAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+         $iduser = $this->get('security.context')->getToken()->getUser()->getId();
+        $id = '' . $iduser;
+        $entity = $em->getRepository('GestionUserBundle:Etudiant')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Etudiant entity.');
+        }
+
+        $deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createForm(new EtudiantpwdType(), $entity);
+        $editForm->bind($request);
+
+        if ($editForm->isValid()) {
+            $entity->setNew(1);
+            $em->persist($entity);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('etudiant_editpwd', array('id' => $id)));
+        }
+
+        return $this->render('GestionUserBundle:Etudiant:editpwd.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

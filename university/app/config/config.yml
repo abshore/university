@@ -117,4 +117,12 @@ pugx_multi_user:
             type: Gestion\UserBundle\Form\ProfType
             name: fos_user_profile_form
             validation_groups:  [Profile, Default]
+services:
+ 
+    acme_login_success_handler:
+         class:  Gestion\UserBundle\Component\Authentication\Handler\LoginSuccessHandler
+         arguments:  [@router, @security.context]
+         tags:
+            - { name: 'monolog.logger', channel: 'security' } 
+   
     

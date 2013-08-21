@@ -21,4 +21,43 @@ abstract class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+     /**
+     * @var integer
+     *
+     * @ORM\Column(name="new", type="integer")
+     */
+    protected $new;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set new
+     *
+     * @param integer $new
+     * @return User
+     */
+    public function setNew($new)
+    {
+        $this->new = $new;
+    
+        return $this;
+    }
+
+    /**
+     * Get new
+     *
+     * @return integer 
+     */
+    public function getNew()
+    {
+        return $this->new;
+    }
 }

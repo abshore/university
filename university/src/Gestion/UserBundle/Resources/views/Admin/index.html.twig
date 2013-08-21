@@ -27,11 +27,21 @@
 
 
 
-     <table class="table table-bordered table-striped table-condensed table-hover" style="width: 80%; margin-left: 10%;margin-top: 100px;">
-      
- <thead>
+<div class="panel panel-info" style="width: 80%; margin-left: 10%;margin-top: 100px;">
+    
+    <div class="panel-heading ">
+        <div style="text-align: left; float: left; text-decoration: underline;font-size: larger">Liste des admin</div>
+        <div style="text-align: right">
+             <a class="btn btn-primary" href="{{ path('admin_registration') }}">
+                Add Admin
+            </a>
+        </div>
+    </div>
+    <div class="table-responsive">
+    <table class="table table-bordered table-striped table-condensed table-hover">
+        <thead>
             <tr>
-                <th>Username</th>
+                 <th>Username</th>
                 <th>Email</th>
                 <th>Enabled</th>
                 <th>Locked</th>
@@ -39,12 +49,12 @@
                 <th>Expiresat</th>
                 <th>Nom</th>
                 <th>Prenom</th>
-                  <th>Doc</th>
+                
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
- {% for entity in entities %}
+       {% for entity in entities %}
             <tr>
                 <td><a href="{{ path('admin_show', { 'id': entity.id }) }}">{{ entity.username }}</a></td>
                  <td>{{ entity.email }}</td>
@@ -54,7 +64,7 @@
                 <td>{% if entity.expiresAt %}{{ entity.expiresAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                <td>{{ entity.nom }}</td>
                 <td>{{ entity.prenom }}</td>
-                 <td>{{ entity.doc }}</td>
+               
             <td>
                 <ul>
                  
@@ -66,16 +76,17 @@
                 </td>
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+        </div>
+        
+        
 
-        <ul>
-    
-            <a class="btn btn-primary" href="{{ path('admin_registration') }}">
-                Add Admin
-            </a>
-      
-    </ul>
+    </div>
+
+
+
+     
 
 
 

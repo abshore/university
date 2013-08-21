@@ -19,8 +19,7 @@ class AdmineditType extends AbstractType {
             ->add('plainPassword')
             ->add('nom')
             ->add('prenom')
-            ->add('doc','file', array(
-                'data_class' => null)  )
+           
         ;
     }
 
