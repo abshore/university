@@ -38,9 +38,13 @@ class LoginSuccessHandler implements AuthenticationSuccessHandlerInterface
         {
             $response = new RedirectResponse($this->router->generate('admin'));
         } 
-        elseif ($this->security->isGranted('ROLE_PROF'))
+        elseif ($this->security->isGranted('ROLE_PROF')&& $lastlogin!=0)
         {
             $response = new RedirectResponse($this->router->generate('prof'));
+        }
+        elseif ($this->security->isGranted('ROLE_PROF')&& $lastlogin==0)
+        {
+            $response = new RedirectResponse($this->router->generate('prof_editpwd'));
         }
         elseif ($this->security->isGranted('ROLE_USER'))
         {
