@@ -5,6 +5,9 @@ namespace Gestion\UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use PUGX\MultiUserBundle\Validator\Constraints\UniqueEntity;
 
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @ORM\Entity
  * @ORM\Table(name="etudiant")
@@ -208,6 +211,13 @@ class Etudiant extends User
     public function getPresentation()
     {
         return $this->presentation;
+    }
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('plainPassword', new Assert\NotIdenticalTo(array(
+            'value' => "etudiant",
+            'message'=> 'meme pwd',
+        )));
     }
     
 }

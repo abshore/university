@@ -6,7 +6,7 @@
     {% block stylesheets %}
       <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css" />
 
-
+<link rel="stylesheet" href="http://jquery.bassistance.de/validate/demo/site-demos.css">
     {% endblock %}
   </head>
   <body>
@@ -110,6 +110,22 @@
           {% endblock %}
       
   {% block javascripts %}
+
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://jquery.bassistance.de/validate/jquery.validate.js"></script>
+<script src="http://jquery.bassistance.de/validate/additional-methods.js"></script>
+<script>
+
+$( "#myform" ).validate({
+rules: {
+password: "test",
+
+gestion_userbundle_etudiantedittype_plainPassword: {
+equalTo: "#password"
+}
+}
+});
+</script>
     {# Ajoutez ces javascripts si vous comptez vous servir des
 fonctionnalités du bootstrap Twitter #}
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>

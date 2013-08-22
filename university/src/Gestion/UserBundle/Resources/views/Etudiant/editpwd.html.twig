@@ -1,17 +1,20 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    
+
+
 <h1>Changer votre mot de passe</h1>
 
-    <form style="width: 80%; margin-left: 10%;margin-top: 100px;"  class="form-horizontal" action="{{ path('etudiant_updatepwd', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    <form id="myform" style="width: 80%; margin-left: 10%;margin-top: 100px;"  class="form-horizontal" action="{{ path('etudiant_updatepwd', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
         <input type="hidden" name="_method" value="PUT" />
-      
+         <input type="hidden" id="password" name="password"  value="test"/>
 
 
 <div class="form-group">
             <label class="col-lg-2 control-label" for="inputEmail">{{ form_label(edit_form.plainPassword) }}</label>
-            <div class="col-lg-5"> {{ form_widget(edit_form.plainPassword, { 'attr': {'class': 'form-control'} }) }} </div>
+            <div class="col-lg-5">
+
+{{ form_widget(edit_form.plainPassword, { 'attr': {'class': 'form-control'} }) }} </div>
         </div>
  {{ form_rest(edit_form) }}
    
