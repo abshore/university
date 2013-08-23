@@ -26,7 +26,7 @@ class LoginSuccessHandler implements AuthenticationSuccessHandlerInterface
        $lastlogin= $this->security->getToken()->getUser()->getNew();
         
         
-        if ($this->security->isGranted('ROLE_ETUDIANT') && $lastlogin==0)
+        if ($this->security->isGranted('ROLE_ETUDIANT') && $lastlogin==null)
         {
             $response = new RedirectResponse($this->router->generate('etudiant_editpwd'));            
         }

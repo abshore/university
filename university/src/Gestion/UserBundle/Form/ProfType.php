@@ -15,16 +15,20 @@ class ProfType extends AbstractType
             ->add('email')
             ->add('tel')
             ->add('mobile')
-            ->add('cv')
-            ->add('presentation')
+           
             ->add('enabled')
             ->add('plainPassword')
             ->add('expired')
-            ->add('expiresAt')
-            ->add('roles', 'choice', array(
-                    'choices'   => array('ROLE_PROF' => 'ROLE_PROF', 'ROLE_ETUDIANT' => 'ROLE_ETUDIANT','ROLE_ADMIN'=>'ROLE_ADMIN'),
-                     'multiple'  => true,
-                   ))
+             ->add('expiresAt', 'date', array(
+                    'format' => \IntlDateFormatter::SHORT,
+                    'input' => 'datetime',
+                    'widget' => 'single_text',
+                    'attr' => array('class' => 'form-control date'),
+                    'data' => new \DateTime("now")))
+                ->add('roles', 'choice', array(
+                    'choices' => array('ROLE_PROF' => 'ROLE_PROF', 'ROLE_ETUDIANT' => 'ROLE_ETUDIANT', 'ROLE_ADMIN' => 'ROLE_ADMIN'),
+                    'multiple' => true, 'attr' => array('class' => 'form-control')
+                ))
             ->add('nom')
             ->add('prenom')
         ;

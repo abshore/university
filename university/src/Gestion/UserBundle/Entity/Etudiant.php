@@ -215,8 +215,8 @@ class Etudiant extends User
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint('plainPassword', new Assert\NotIdenticalTo(array(
-            'value' => "etudiant",
-            'message'=> 'meme pwd',
+            'value' => 'etudiant',
+            'message'=>'meme pwd',
         )));
     }
     

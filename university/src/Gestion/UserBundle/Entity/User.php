@@ -24,17 +24,16 @@ abstract class User extends BaseUser
      /**
      * @var integer
      *
-     * @ORM\Column(name="new", type="integer")
+     * @ORM\Column(name="new", type="integer",nullable=true)
      */
     protected $new;
-
+    
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
